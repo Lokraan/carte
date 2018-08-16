@@ -23,6 +23,7 @@ defmodule Carte.MixProject do
   defp deps do
     [
       {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
+      {:keccakf1600, "~> 2.0.0"},
       {:distillery, "~> 2.0"}
     ]
   end
