@@ -1,7 +1,7 @@
 
 defmodule Blockchain.Block do
   
-  alias Blockchain.{Block, BlockData, Utils}  
+  alias Blockchain.{Block, BlockData, Utils, Crypto}  
 
   @type t :: %__MODULE__{
     index: integer,
@@ -53,7 +53,7 @@ defmodule Blockchain.Block do
 
   def compute_hash(
     %Block{index: i, previous_hash: h, timestamp: ts, data: data, nonce: n}) do
-    :crypto.hash(:sha256, "#{i}#{h}#{ts}#{BlockData.hash(data)}#{n}")
+    Crypto.hash("#{i}#{h}#{ts}#{Crypto.hash(data)}#{n}")
     |> Base.encode16()
   end
 
