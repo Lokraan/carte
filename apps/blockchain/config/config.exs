@@ -4,8 +4,8 @@ use Mix.Config
 
   config :blockchain,
     num_bits: 256,
-    highest_value: :math.pow(256, 2)
-    difficulty_target: 600 # 10 minutes
+    highest_value: 256*256
+    difficulty_target: 12 # 12 seconds
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

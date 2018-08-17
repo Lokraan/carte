@@ -9,7 +9,9 @@ defmodule Blockchain.Block do
     timestamp: integer,
     data: Blockdata.t(),
     nonce: integer,
-    hash: String.t()
+    hash: String.t(),
+    difficulty: integer,
+    reward: integer
   }
 
   @derive [Poison.Encoder]
