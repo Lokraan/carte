@@ -19,7 +19,8 @@ defmodule Blockchain.Block do
     :timestamp,
     :data,
     :nonce,
-    :hash
+    :hash,
+    :target
   ]
 
   @spec genesis_block :: t
@@ -57,7 +58,7 @@ defmodule Blockchain.Block do
 
   def compute_hash(
     %Block{index: i, previous_hash: h, timestamp: ts, data: data, nonce: n}) do
-    Crypto.hash("#{i}#{h}#{ts}#{Crypto.hash(data)}#{n}")
+    Crypto.hash("#{i}#{h}#{Crypto.hash(data)}#{n}") # not including timestamp
     |> Base.encode16()
   end
 

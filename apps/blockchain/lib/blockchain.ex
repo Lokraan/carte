@@ -1,7 +1,7 @@
 defmodule Blockchain do
 
   use GenServer
-  alias Blockchain.{Block, BlockData}
+  alias Blockchain.{Block, BlockData, Chain}
 
   def start_link() do
     Genserver.start_link(__MODULE__, :ok, name: __MODULE__)
@@ -23,9 +23,28 @@ defmodule Blockchain do
     case verify_block()
   end
 
-  @spec new_blockchain() :: t
-  def new_blockchain() do
-    t
+  @impl true
+  def handle_call({:add_block, %Block{} = block}, _from, chain) do
+    [last_block | _] = chain 
+
+    case verify_block(block, chain) do
+      :ok -> {:reply, :ok, [block | chain]}
+    end
+
+  end
+
+  def verify_block(block, chain) do
+    [last_block | _ ] = chain
+    cond do
+      block.index != last_block.index + 1 -> 
+        {:error, "Invalid Block Index"}
+
+      block.previous_hash != last_block.hash ->
+        {:error "Invalid Previous Hash"}
+
+      Integer.parse(block.hash, 16) < Difficulty.get_target() ->
+        {:error "Invalid Hash"} 
+    end
   end
 
 end
