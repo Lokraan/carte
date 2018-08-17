@@ -38,17 +38,21 @@ defmodule Blockchain.Block do
   end
 
   @spec generate_next_block(BlockData.t(), t) :: t
-  def generate_next_block(data, latest_block) do
+  def generate_next_block(data, last_block) do
     block = %Block{
-      index: latest_block.index + 1,
-      previous_hash: latest_block.hash,
+      index: last_block.index + 1,
+      previous_hash: last_block.hash,
       timestamp: Utils.get_timestamp(),
       data: data,
-      nonce: 1000
+      nonce: 0
     }
 
     hash = compute_hash(block)
     %{block | hash: hash}
+  end
+
+  @spec generate_block(String.t()) :: t
+  def get_block(data) do
   end
 
   def compute_hash(

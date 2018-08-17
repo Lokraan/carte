@@ -1,4 +1,3 @@
-
 defmodule Blockchain.BlockData do
 
   alias Blockchain.{Block}

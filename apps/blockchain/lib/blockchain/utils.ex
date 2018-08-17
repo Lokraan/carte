@@ -1,4 +1,3 @@
-
 defmodule Blockchain.Utils do
   
   @spec get_timestamp() :: integer

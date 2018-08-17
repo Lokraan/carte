@@ -1,36 +1,31 @@
 defmodule Blockchain do
 
+  use GenServer
   alias Blockchain.{Block, BlockData}
 
-  defstruct(
-    chain: [Block],
-    height: 0
-  )
+  def start_link() do
+    Genserver.start_link(__MODULE__, :ok, name: __MODULE__)
+  end
 
-  @type t :: Blockchain
+  @impl true
+  def init(_) do
+    {:ok, [Block.genesis_block()]}
+  end
 
-  @spec add_block(t, String.t()) :: t | {:error, String.t()}
-  def add_block(chain, data) do
+  @spec add_block(Block.t()) :: t | {:error, String.t()}
+  def add_block(data) do
 
-    last_block = List.last(chain.chain)
-    block = Block.generate_next_block(data, last_block)
+  end
 
-    if BlockData.verify(block, chain) do
-      %Blockchain{ 
-        chain: [chain.chain | block],
-        height: chain.height + 1 
-      }
-    else
-      {:error, "Couldn't verify block"}
-    end
+  @impl true
+  def handle_call(:add_block, ) do
+    
+    case verify_block()
   end
 
   @spec new_blockchain() :: t
   def new_blockchain() do
-    %Blockchain{
-      chain: [Block.genesis_block()],
-      height: 1
-    }
+    t
   end
 
 end
