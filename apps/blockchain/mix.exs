@@ -1,3 +1,4 @@
+
 defmodule Blockchain.MixProject do
   use Mix.Project
 
@@ -18,6 +19,7 @@ defmodule Blockchain.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      applications: [:rsa_ex],
       extra_applications: [:logger, :keccakf1600, :timex]
     ]
   end
@@ -28,6 +30,7 @@ defmodule Blockchain.MixProject do
       {:keccakf1600, "~> 2.0.0"},
       {:scribe, "~> 0.8"},
       {:poison, "~> 3.1"},
+      {:rsa_ex, "~> 0.3"}
     ]
   end
 end

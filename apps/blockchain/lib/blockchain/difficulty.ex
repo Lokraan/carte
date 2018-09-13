@@ -5,7 +5,13 @@ defmodule Blockchain.Difficulty do
 
   # https://ethereum.stackexchange.com/questions/1880/how-is-the-mining-difficulty-calculated-on-ethereum
 	@spec get_next_difficulty(Block.t()) :: integer
-	def get_next_difficulty(block, chain) do
+	def get_next_difficulty(block, last_block) do
+
+    if block.index == 1 do
+      1
+    else
+
+    end
 
     [last_block, _] = chain
 

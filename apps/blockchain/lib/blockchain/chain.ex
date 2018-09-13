@@ -14,7 +14,10 @@ defmodule Blockchain.Chain do
         {:error "Invalid Previous Hash"}
 
       Integer.parse(block.hash, 16) < Difficulty.get_target(block.index) ->
-        {:error "Invalid Hash"} 
+        {:error "Invalid Hash"}
+
+      true -> 
+        {:ok, "Verified"}
     end
   end
 
