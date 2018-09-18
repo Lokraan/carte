@@ -1,6 +1,6 @@
-defmodule LockeTest do
+defmodule CarteTest do
   use ExUnit.Case
-  doctest Locke
+  doctest Carte
 
   test "greets the world" do
     assert Carte.hello() == :world

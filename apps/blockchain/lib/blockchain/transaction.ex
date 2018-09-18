@@ -27,6 +27,8 @@ defmodule Blockchain.Transaction do
     }
   end
 
-  def verify_tx()
+  def verify_tx(tx) do
+     
+  end
 
 end

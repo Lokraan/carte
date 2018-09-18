@@ -19,14 +19,11 @@ defmodule Blockchain do
   @impl true
   def handle_call({:add_block, block}) do
     case Chain.verify_block(add_block) ->
-
       {:ok, resp} -> 
         {:reply, {:ok, resp}, [state | block]}
 
       {:error, err} ->
-        {:reply, {:error, err}, }
-
+        {:reply, {:error, err}, state}
     end
   end
-
 end
